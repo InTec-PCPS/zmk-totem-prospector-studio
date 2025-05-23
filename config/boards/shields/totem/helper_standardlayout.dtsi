@@ -19,18 +19,14 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/rgb.h>
 
-#include "specialkeys.dtsi"
-#include "homerowmods.dtsi"
-#include "autoshift.dtsi"
-#include "keymap_drawer.dtsi"
+#include "helper_specialkeys.dtsi"
+#include "helper_homerowmods.dtsi"
+#include "helper_autoshift.dtsi"
 
 // Layers definitions
 // -----------------------------------------------------------------------------
-// The next define macros represent each layer my layout has, so I can reference
-// them by name instead of numbers.
 //
-// NOTE: Check the README.md file for a detailed explanation of my layers
-//       system, but notice that all "base layers" are defined before the
+// NOTE: All "base layers" are defined before the
 //       adjustment ones, this way, if we switch to a different layout, you can
 //       still toggle all the other layers in the layout.
 
