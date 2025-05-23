@@ -1,0 +1,98 @@
+
+
+// The next defines are helpers to describe a home row modifiers by a numerical
+// importance. Smaller numbers are _more important_ then the others.
+// Importance, in this contexts, is defined by which finger you use to press the
+// modifier:
+//
+// 1. Index finger;
+// 2. Middle finger;
+// 3. Ring finger;
+// 4. Pinky;
+//
+// Each define uses the following syntax:
+//
+// `<Keyboard side: L or R>HRM<Importance>`
+//
+// For instance, the define `RHRME3` represents the Home Row Modifier on the
+// right side of the keyboard, that you press with your ring finger.
+
+// Left side
+#define LHRM1 LSHFT
+#define LHRM2 LGUI
+#define LHRM3 LALT
+#define LHRM4 LCTRL
+
+// Right side
+#define RHRM1 RSHFT
+#define RHRM2 RGUI
+#define RHRM3 RALT
+#define RHRM4 RCTRL
+
+// Instead of using the homerow mod behaviors directly, we'll use the next
+// macro functions so we don't have to worry when to use the `hm` or `hs`
+// behavior:
+
+// Left side
+#define LHM1(_key)  &hsl LHRM1 _key
+#define LHM2(_key)  &hml LHRM2 _key
+#define LHM3(_key)  &hml LHRM3 _key
+#define LHM4(_key)  &hml LHRM4 _key
+
+// Right side
+#define RHM1(_key)  &hsr RHRM1 _key
+#define RHM2(_key)  &hmr RHRM2 _key
+#define RHM3(_key)  &hmr RHRM3 _key
+#define RHM4(_key)  &hmr RHRM4 _key
+
+// On the same style as the homerow mods, I want to define a normal momentary
+// hold behavior for the cases where I want to have a hold-preferred behavior:
+
+// Left side
+#define LMT1(_key)  &mt LHRM1 _key
+#define LMT2(_key)  &mt LHRM2 _key
+#define LMT3(_key)  &mt LHRM3 _key
+#define LMT4(_key)  &mt LHRM4 _key
+
+// Right side
+#define RMT1(_key)  &mt RHRM1 _key
+#define RMT2(_key)  &mt RHRM2 _key
+#define RMT3(_key)  &mt RHRM3 _key
+#define RMT4(_key)  &mt RHRM4 _key
+
+// This is a helper macro to allow me to define all home-row modifier without
+// having to type all the boilerplate configuration.
+#define DEFINE_HRM(_label, _name, _hold, _tap, _triggers, ...)  \
+    _label: _name {                                             \
+      compatible = "zmk,behavior-hold-tap";                     \
+      #binding-cells = <2>;                                     \
+      flavor = "balanced";                                      \
+      tapping-term-ms = <200>;                                  \
+      quick-tap-ms = <175>;                                     \
+      bindings = <_hold>, <_tap>;                               \
+      hold-trigger-key-positions = <_triggers>;                 \
+      hold-trigger-on-release;                                  \
+      __VA_ARGS__                                               \
+    }
+
+/ {
+  behaviors {
+    // The firs behavior is for homerow mods that are NOT the shift key, so
+    // we're free to use the `require-prior-idle-ms` property
+    DEFINE_HRM(hml, home_row_mod_left, &kp, &kp, KEYS_R THUMBS,
+      require-prior-idle-ms = <100>;
+    );
+    DEFINE_HRM(hmr, home_row_mod_right, &kp, &kp, KEYS_L THUMBS,
+      require-prior-idle-ms = <100>;
+    );
+
+    // Then, we have to define a behavior like the one before, but for the shift
+    // key, which means we cannot use the `require-prior-idle-ms` property
+    DEFINE_HRM(hsl, home_row_mod_for_shift_left, &kp, &kp, KEYS_R THUMBS);
+    DEFINE_HRM(hsr, home_row_mod_for_shift_right, &kp, &kp, KEYS_L THUMBS);
+
+    // Lastly, we need a home-row mod type of behavior that work with layers
+    DEFINE_HRM(hll, home_row_layer_mod_left, &mo, &kp, KEYS_R THUMBS LB3 LB2 LB1);
+    DEFINE_HRM(hlr, home_row_layer_mod_right, &mo, &kp, KEYS_L THUMBS RB3 RB2 RB1);
+  };
+};

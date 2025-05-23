@@ -1,0 +1,81 @@
+
+
+// This file contains helpers for the map layout generation. If you're not
+// interested on the Keymap-Drawer configuration I use, you can safely skip
+// this file.
+
+// Keymp-Drawer helpers
+// -----------------------------------------------------------------------------
+// Thses definitions are only used by the Keymap-Drawer parser, and are not
+// intended to go to the firmware. Each helper definition has some kind of
+// translation or "no-op" key defined to be used when Keymap-Drawer is not
+// parsing.
+#if defined(KEYMAP_DRAWER)
+/ {
+  macros {
+    // This is a helper macro to allow me to mark the `molock` key on the
+    // System layer as a the key that enable the layer itself. This is only
+    // used by Keymap-Drawer to color the key differently.
+    syslocktog: system_layer_lock_or_toggle {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+#if defined(USE_MOLOCK)
+      bindings = <&molock>;
+#else
+      bindings = <&tog L_SYS>;
+#endif
+    };
+
+    butundotog: undo_or_buttons_layer_toggle {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp MAC_UNDO>;
+    };
+
+    navcmdz: command_z_nav_layer {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp LG(Z)>;
+    };
+
+    navcmdx: command_x_nav_layer {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp LG(X)>;
+    };
+
+    navcmdc: command_c_nav_layer {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp LG(C)>;
+    };
+
+    navcmdv: command_v_nav_layer {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp LG(V)>;
+    };
+
+    navcmdg: command_g_nav_layer {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp LG(G)>;
+    };
+  };
+};
+#define LOCK_SYS_LAYER &syslocktog
+#define UNDO_TOG_BUT_LAYER &butundotog
+#define NAV_LG_Z &navcmdz
+#define NAV_LG_X &navcmdx
+#define NAV_LG_C &navcmdc
+#define NAV_LG_V &navcmdv
+#define NAV_LG_G &navcmdg
+#else
+#define LOCK_SYS_LAYER &molock
+#define UNDO_TOG_BUT_LAYER &kp MAC_UNDO
+#define NAV_LG_Z &kp LG(Z)
+#define NAV_LG_X &kp LG(X)
+#define NAV_LG_C &kp LG(C)
+#define NAV_LG_V &kp LG(V)
+#define NAV_LG_G &kp LG(G)
+#endif

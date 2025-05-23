@@ -1,0 +1,206 @@
+
+
+// Hyper Key: ⇧ ⌥ ^ ⌘ (Shift + Alt + Control + Command)
+#define LEFT_HYPER             LS(LA(LC(LGUI)))
+#define LHYP                   LEFT_HYPER
+#define RIGHT_HYPER            RS(RA(RC(RGUI)))
+#define RHYP                   RIGHT_HYPER
+
+// Hyper Key function like LG and RG
+#define LH(keycode)            LS(LA(LC(LG(keycode))))
+#define RH(keycode)            RS(RA(RC(RG(keycode))))
+
+// Meh Key: ⇧ ⌥ ^ (Shift + Alt + Control)
+#define LEFT_MEH               LS(LA(LCTRL))
+#define LMEH                   LEFT_MEH
+#define RIGHT_MEH              RS(RA(RCTRL))
+#define RMEH                   RIGHT_MEH
+
+// Meh Key function like LG and RG
+#define LM(keycode)            LS(LA(LC(keycode)))
+#define RM(keycode)            RS(RA(RC(keycode)))
+
+// Keys I feel should be part of ZMK
+#define BACK_TAB               LS(TAB)
+#define BTAB                   BACK_TAB
+
+// macOS Keys and common shortcuts
+#define MAC_LAUNCHPAD          C_AC_DESKTOP_SHOW_ALL_APPLICATIONS
+#define MAC_LP                 MAC_LAUNCHPAD
+#define MAC_MISSION_CONTROL    C_AC_DESKTOP_SHOW_ALL_WINDOWS
+#define MAC_MC                 MAC_MISSION_CONTROL
+#define MAC_SPOTLIGHT          C_AC_SEARCH
+#define MAC_SP                 MAC_SPOTLIGHT
+#define MAC_CUT                LG(X)
+#define MAC_COPY               LG(C)
+#define MAC_PASTE              LG(V)
+#define MAC_UNDO               LG(Z)
+#define MAC_REDO               LG(LS(Z))
+#define MAC_APP_WINDOWS        LG(LC(DOWN))   // Show windows from current application
+#define MAC_APPWIN             MAC_APP_WINDOWS
+#define MAC_NEXT_WINDOW        LG(GRAVE)      // Go to the next window on the same application
+#define MAC_WINN               MAC_NEXT_WINDOW
+#define MAC_PREVIOUS_WINDOW    LG(TILDE)      // Go to the previous window on the same application
+#define MAC_WINP               MAC_PREVIOUS_WINDOW
+#define MAC_NEXT_DESKTOP       LG(LC(RIGHT))  // Go to the next virtual desktop
+#define MAC_DKTN               MAC_NEXT_DESKTOP
+#define MAC_PREVIOUS_DESKTOP   LG(LC(LEFT))   // Go to the previous virtual desktop
+#define MAC_DKTP               MAC_PREVIOUS_DESKTOP
+#define MAC_FIND_NEXT          LG(G)
+#define MAC_FDNXT              MAC_FIND_NEXT
+#define MAC_FIND_PREVIOUS      LG(LS(G))
+#define MAC_FDPRV              MAC_FIND_PREVIOUS
+#define MAC_NEXT_WORD          LA(RIGHT)
+#define MAC_WRDN               MAC_NEXT_WORD
+#define MAC_PREVIOUS_WORD      LA(LEFT)
+#define MAC_WRDP               MAC_PREVIOUS_WORD
+#define MAC_START_OF_LINE      LG(LEFT)
+#define MAC_STTL               MAC_START_OF_LINE
+#define MAC_END_OF_LINE        LG(RIGHT)
+#define MAC_ENDL               MAC_END_OF_LINE
+
+// RGB Helpers
+#define RGB_RESET              RGB_COLOR_HSB(0, 0, 60)
+
+// The next set of defines can only be used if you're building against the
+// branch `feat/pointers-move-scroll` from Peter Johanson's ZMK fork.
+// Usually, I would have a "feature-flag" like `USE_MOUSE_POINTERS`, but in
+// this particular case, we can rely on a macro define that would be defined
+// once the branch is merged to mainline.
+#if defined(MOVE_X_DECODE)
+// Mouse actions
+#define MSCRL                  &msc
+#define MMOVE                  &mmv
+// Mouse scroll directions
+#define SCROLL_UP              MOVE_Y(-ZMK_MOUSE_DEFAULT_SCRL_VAL)
+#define SCRLUP                 SCROLL_UP
+#define SCROLL_DOWN            MOVE_Y(ZMK_MOUSE_DEFAULT_SCRL_VAL)
+#define SCRLDN                 SCROLL_DOWN
+#define SCROLL_LEFT            MOVE_X(ZMK_MOUSE_DEFAULT_SCRL_VAL)
+#define SCRLL                  SCROLL_LEFT
+#define SCROLL_RIGHT           MOVE_X(-ZMK_MOUSE_DEFAULT_SCRL_VAL)
+#define SCRLR                  SCROLL_RIGHT
+// Mouse movements
+#define MKP_MOVE_LEFT          MMOVE MOVE_LEFT
+#define MKP_MOVE_DOWN          MMOVE MOVE_DOWN
+#define MKP_MOVE_UP            MMOVE MOVE_UP
+#define MKP_MOVE_RIGHT         MMOVE MOVE_RIGHT
+// Scroll wheel
+#define MKP_SCRL_LEFT          MSCRL SCROLL_LEFT
+#define MKP_SCRL_DOWN          MSCRL SCROLL_DOWN
+#define MKP_SCRL_UP            MSCRL SCROLL_UP
+#define MKP_SCRL_RIGHT         MSCRL SCROLL_RIGHT
+#else
+// Mouse actions
+#define MSCRL                  &kp
+#define MMOVE                  &kp
+// Mouse scroll directions
+#define SCROLL_UP              UP
+#define SCRLUP                 SCROLL_UP
+#define SCROLL_DOWN            DOWN
+#define SCRLDN                 SCROLL_DOWN
+#define SCROLL_LEFT            LEFT
+#define SCRLL                  SCROLL_LEFT
+#define SCROLL_RIGHT           RIGHT
+#define SCRLR                  SCROLL_RIGHT
+// Mouse movements
+#define MKP_MOVE_LEFT          &kp KP_N4
+#define MKP_MOVE_DOWN          &kp KP_N2
+#define MKP_MOVE_UP            &kp KP_N8
+#define MKP_MOVE_RIGHT         &kp KP_N6
+// Scroll wheel
+#define MKP_SCRL_LEFT          &none
+#define MKP_SCRL_DOWN          &none
+#define MKP_SCRL_UP            &none
+#define MKP_SCRL_RIGHT         &none
+#endif
+
+// This helper macro allow one to define a normal key with a special output with
+// pressing shift. This is useful when you want to create a key that, its
+// shifted value, differs from the standard behavior.
+#define DEFINE_SHIFT_KEY(_behavior_name, _normal_key, _shifted_key) \
+    _behavior_name: _behavior_name {                                \
+      compatible = "zmk,behavior-mod-morph";                        \
+      #binding-cells = <0>;                                         \
+      bindings = <_normal_key>, <_shifted_key>;                     \
+      mods = <(MOD_LSFT|MOD_RSFT)>;                                 \
+    }
+
+#define DEFINE_DOUBLE_TAP_KEY(_behavior_name, _normal_key, _double_tap_key) \
+    _behavior_name: _behavior_name {                                        \
+      compatible = "zmk,behavior-tap-dance";                                \
+      #binding-cells = <0>;                                                 \
+      tapping-term-ms = <200>;                                              \
+      bindings = <_normal_key>, <_double_tap_key>;                          \
+    };
+
+
+// Internal helper macro to allow us to define all our reversed number keys.
+// This macro should NOT be used outside this file!
+#define __NUM_REVERSE(_number, _symbol)  DEFINE_SHIFT_KEY(kp_r ## _number, &kp _symbol, &kp _number)
+
+/ {
+  macros {
+    // This is a helper macro increases the keyboard's backlight intensity, but
+    // it also guarantees that the backlight feature is turned ON before doing
+    // so.
+    bl_inc: backlight_on_and_increase {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&bl BL_ON>, <&bl BL_INC>;
+    };
+  };
+};
+
+// Next are keys I want to modify their standard behavior, like sending an `@`
+// character when pressing the number `9` with a shift modifier, instead of a
+// `(` one. All behaviors defined for the sole purpose of redefining a single
+// key will prefixed with `kp_` to make it easy to identify them.
+/ {
+  behaviors {
+    // Make the `BACKSPACE` key behaves like `DEL`, when holding shift down.
+    // This mimics the standard backspace behavior on Mac Books.
+    DEFINE_SHIFT_KEY(kp_bspcdel, &kp BACKSPACE, &kp DELETE);
+
+    // The next 10 key behaviors invert the normal number keys. This means that
+    // instead of  a "number" with tap and a "symbol" with shift-tap, the key
+    // will be a "symbol" with tap, and a "number" with a shift-tap. The
+    // `__NUM_REVERSE` macro will generate a behavior named `kp_rN<x>`, where
+    // `<x>` is the number being reversed:
+    __NUM_REVERSE(N1, EXCLAMATION);
+    __NUM_REVERSE(N2, AT);
+    __NUM_REVERSE(N3, HASH);
+    __NUM_REVERSE(N4, DOLLAR);
+    __NUM_REVERSE(N5, PERCENT);
+    __NUM_REVERSE(N6, CARET);
+    __NUM_REVERSE(N7, AMPERSAND);
+    __NUM_REVERSE(N8, ASTERISK);
+    __NUM_REVERSE(N9, LEFT_PARENTHESIS);
+    __NUM_REVERSE(N0, RIGHT_PARENTHESIS);
+
+    // Underglow RESET, that, when double-tapped, zero-out all the underglow
+    // values.
+    DEFINE_DOUBLE_TAP_KEY(ug_reset, &rgb_ug RGB_RESET, &rgb_ug RGB_COLOR_HSB(0, 0, 0))
+
+    // Backlight DECREASE, that, when double-tapped, turn off the keyboard
+    // backlight.
+    DEFINE_DOUBLE_TAP_KEY(bl_dec, &bl BL_DEC, &bl BL_OFF)
+
+    // The GLOBE key does not have all the functionalities Apple's version of
+    // the key has, so I'm adding a new one to it:
+    // When you double-tap it, it will activate the CAPS-WORD mode.
+    globecaps: globe_or_caps_word {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&kp GLOBE>, <&caps_word>;
+    };
+
+    mouscrl: mouse_scroller {
+      compatible = "zmk,behavior-sensor-rotate-var";
+      #sensor-binding-cells = <2>;
+      tap-ms = <40>;
+      bindings = <MSCRL>, <MSCRL>;
+    };
+  };
+};
