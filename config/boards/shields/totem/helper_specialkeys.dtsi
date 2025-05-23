@@ -1,25 +1,3 @@
-
-
-// Hyper Key: ⇧ ⌥ ^ ⌘ (Shift + Alt + Control + Command)
-#define LEFT_HYPER             LS(LA(LC(LGUI)))
-#define LHYP                   LEFT_HYPER
-#define RIGHT_HYPER            RS(RA(RC(RGUI)))
-#define RHYP                   RIGHT_HYPER
-
-// Hyper Key function like LG and RG
-#define LH(keycode)            LS(LA(LC(LG(keycode))))
-#define RH(keycode)            RS(RA(RC(RG(keycode))))
-
-// Meh Key: ⇧ ⌥ ^ (Shift + Alt + Control)
-#define LEFT_MEH               LS(LA(LCTRL))
-#define LMEH                   LEFT_MEH
-#define RIGHT_MEH              RS(RA(RCTRL))
-#define RMEH                   RIGHT_MEH
-
-// Meh Key function like LG and RG
-#define LM(keycode)            LS(LA(LC(keycode)))
-#define RM(keycode)            RS(RA(RC(keycode)))
-
 // Keys I feel should be part of ZMK
 #define BACK_TAB               LS(TAB)
 #define BTAB                   BACK_TAB
@@ -59,61 +37,6 @@
 #define MAC_END_OF_LINE        LG(RIGHT)
 #define MAC_ENDL               MAC_END_OF_LINE
 
-// RGB Helpers
-#define RGB_RESET              RGB_COLOR_HSB(0, 0, 60)
-
-// The next set of defines can only be used if you're building against the
-// branch `feat/pointers-move-scroll` from Peter Johanson's ZMK fork.
-// Usually, I would have a "feature-flag" like `USE_MOUSE_POINTERS`, but in
-// this particular case, we can rely on a macro define that would be defined
-// once the branch is merged to mainline.
-#if defined(MOVE_X_DECODE)
-// Mouse actions
-#define MSCRL                  &msc
-#define MMOVE                  &mmv
-// Mouse scroll directions
-#define SCROLL_UP              MOVE_Y(-ZMK_MOUSE_DEFAULT_SCRL_VAL)
-#define SCRLUP                 SCROLL_UP
-#define SCROLL_DOWN            MOVE_Y(ZMK_MOUSE_DEFAULT_SCRL_VAL)
-#define SCRLDN                 SCROLL_DOWN
-#define SCROLL_LEFT            MOVE_X(ZMK_MOUSE_DEFAULT_SCRL_VAL)
-#define SCRLL                  SCROLL_LEFT
-#define SCROLL_RIGHT           MOVE_X(-ZMK_MOUSE_DEFAULT_SCRL_VAL)
-#define SCRLR                  SCROLL_RIGHT
-// Mouse movements
-#define MKP_MOVE_LEFT          MMOVE MOVE_LEFT
-#define MKP_MOVE_DOWN          MMOVE MOVE_DOWN
-#define MKP_MOVE_UP            MMOVE MOVE_UP
-#define MKP_MOVE_RIGHT         MMOVE MOVE_RIGHT
-// Scroll wheel
-#define MKP_SCRL_LEFT          MSCRL SCROLL_LEFT
-#define MKP_SCRL_DOWN          MSCRL SCROLL_DOWN
-#define MKP_SCRL_UP            MSCRL SCROLL_UP
-#define MKP_SCRL_RIGHT         MSCRL SCROLL_RIGHT
-#else
-// Mouse actions
-#define MSCRL                  &kp
-#define MMOVE                  &kp
-// Mouse scroll directions
-#define SCROLL_UP              UP
-#define SCRLUP                 SCROLL_UP
-#define SCROLL_DOWN            DOWN
-#define SCRLDN                 SCROLL_DOWN
-#define SCROLL_LEFT            LEFT
-#define SCRLL                  SCROLL_LEFT
-#define SCROLL_RIGHT           RIGHT
-#define SCRLR                  SCROLL_RIGHT
-// Mouse movements
-#define MKP_MOVE_LEFT          &kp KP_N4
-#define MKP_MOVE_DOWN          &kp KP_N2
-#define MKP_MOVE_UP            &kp KP_N8
-#define MKP_MOVE_RIGHT         &kp KP_N6
-// Scroll wheel
-#define MKP_SCRL_LEFT          &none
-#define MKP_SCRL_DOWN          &none
-#define MKP_SCRL_UP            &none
-#define MKP_SCRL_RIGHT         &none
-#endif
 
 // This helper macro allow one to define a normal key with a special output with
 // pressing shift. This is useful when you want to create a key that, its
@@ -139,18 +62,6 @@
 // This macro should NOT be used outside this file!
 #define __NUM_REVERSE(_number, _symbol)  DEFINE_SHIFT_KEY(kp_r ## _number, &kp _symbol, &kp _number)
 
-/ {
-  macros {
-    // This is a helper macro increases the keyboard's backlight intensity, but
-    // it also guarantees that the backlight feature is turned ON before doing
-    // so.
-    bl_inc: backlight_on_and_increase {
-      compatible = "zmk,behavior-macro";
-      #binding-cells = <0>;
-      bindings = <&bl BL_ON>, <&bl BL_INC>;
-    };
-  };
-};
 
 // Next are keys I want to modify their standard behavior, like sending an `@`
 // character when pressing the number `9` with a shift modifier, instead of a
@@ -178,13 +89,6 @@
     __NUM_REVERSE(N9, LEFT_PARENTHESIS);
     __NUM_REVERSE(N0, RIGHT_PARENTHESIS);
 
-    // Underglow RESET, that, when double-tapped, zero-out all the underglow
-    // values.
-    DEFINE_DOUBLE_TAP_KEY(ug_reset, &rgb_ug RGB_RESET, &rgb_ug RGB_COLOR_HSB(0, 0, 0))
-
-    // Backlight DECREASE, that, when double-tapped, turn off the keyboard
-    // backlight.
-    DEFINE_DOUBLE_TAP_KEY(bl_dec, &bl BL_DEC, &bl BL_OFF)
 
     // The GLOBE key does not have all the functionalities Apple's version of
     // the key has, so I'm adding a new one to it:
@@ -196,11 +100,5 @@
       bindings = <&kp GLOBE>, <&caps_word>;
     };
 
-    mouscrl: mouse_scroller {
-      compatible = "zmk,behavior-sensor-rotate-var";
-      #sensor-binding-cells = <2>;
-      tap-ms = <40>;
-      bindings = <MSCRL>, <MSCRL>;
-    };
   };
 };
