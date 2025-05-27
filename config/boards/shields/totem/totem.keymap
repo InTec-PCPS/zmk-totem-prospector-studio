@@ -410,7 +410,7 @@
             bindings = <
        &kp N1        &kp N2    &kp N3     &kp N4     &kp N5     &none   &none   &none   &none   &none
        &kp N6        &kp N7    &kp N8     &kp N9     &kp N0     &trans  &trans  &trans  &trans  &trans
-&none  &kp td_par    &kp PLUS  &kp MINUS  &kp EQUAL  &kp DOT    &none   &none   &none   &none   &none   &none
+&none  &td_par    &kp PLUS  &kp MINUS  &kp EQUAL  &kp DOT    &none   &none   &none   &none   &none   &none
                                &none      &none      &none      &trans  &trans  &trans
             >;
         };
@@ -437,8 +437,8 @@
             label = "punc8";
             bindings = <
            &kp EXCL    &kp AT    &kp POUND  &kp DLLR    &kp PRCNT    &none   &none   &none   &none   &none
-           &kp CARET   &kp AMPS  &kp STAR   &kp td_par  &kp td_bkt   &trans  &trans  &trans  &trans  &trans
-&kp GRAVE  &kp td_slh  &kp PIPE  &kp MINUS  &kp PLUS    &kp EQUAL    &none   &none   &none   &none   &none   &none
+           &kp CARET   &kp AMPS  &kp STAR   &td_par  &td_bkt   &trans  &trans  &trans  &trans  &trans
+&kp GRAVE  &td_slh  &kp PIPE  &kp MINUS  &kp PLUS    &kp EQUAL    &none   &none   &none   &none   &none   &none
                                  &trans     &trans      &trans       &trans  &trans  &trans
             >;
         };
