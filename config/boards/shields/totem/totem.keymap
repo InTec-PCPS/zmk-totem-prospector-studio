@@ -174,12 +174,12 @@
     combos {
         compatible = "zmk,combos";
 
-        #define COMBO(combo_caps, &kp CAPS, 13 16, 0 1 2 3)
-        #define COMBO(combo_lbrc, &kp LBRC, 13 14, 8)
-        #define COMBO(combo_lt, &kp LT, 24 25, 8)
-        #define COMBO(combo_undo, &kp K_UNDO, 21 22, 0 1 2 3 4 5 6 7 8 9)
-        #define COMBO(combo_copy, &kp K_COPY, 22 23, 0 1 2 3 4 5 6 7 8 9)
-        #define COMBO(combo_paste, &kp K_PASTE, 23 24, 0 1 2 3 4 5 6 7 8 9)
+        COMBO(combo_caps, &kp CAPS, 13 16, 0 1 2 3)
+        COMBO(combo_lbrc, &kp LBRC, 13 14, 8)
+        COMBO(combo_lt, &kp LT, 24 25, 8)
+        COMBO(combo_undo, &kp K_UNDO, 21 22, 0 1 2 3 4 5 6 7 8 9)
+        COMBO(combo_copy, &kp K_COPY, 22 23, 0 1 2 3 4 5 6 7 8 9)
+        COMBO(combo_paste, &kp K_PASTE, 23 24, 0 1 2 3 4 5 6 7 8 9)
     };
 
 // ▝▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘
@@ -407,10 +407,10 @@
         nums7 {
             label = "nums7";
             bindings = <
-       &kp N1  &kp N2    &kp N3     &kp N4     &kp N5     &none   &none   &none   &none   &none
-       &kp N6  &kp N7    &kp N8     &kp N9     &kp N0     &trans  &trans  &trans  &trans  &trans
-&none  &td0    &kp PLUS  &kp MINUS  &kp EQUAL  &kp DOT    &none   &none   &none   &none   &none   &none
-                         &none      &none      &none      &trans  &trans  &trans
+       &kp N1        &kp N2    &kp N3     &kp N4     &kp N5     &none   &none   &none   &none   &none
+       &kp N6        &kp N7    &kp N8     &kp N9     &kp N0     &trans  &trans  &trans  &trans  &trans
+&none  &kp td_par    &kp PLUS  &kp MINUS  &kp EQUAL  &kp DOT    &none   &none   &none   &none   &none   &none
+                               &none      &none      &none      &trans  &trans  &trans
             >;
         };
 
