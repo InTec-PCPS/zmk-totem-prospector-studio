@@ -215,7 +215,7 @@
                 &kp Q           &kp W          &kp F         &kp P           &kp B             &kp J           &kp L          &kp U         &kp Y           &kp APOS
                 &hml LCTRL A    &hml LALT R    &hml LCMD S   &hml LSHFT T    &hml GLOBE G      &hmr GLOBE M    &hmr RSHFT N   &hmr RCMD E   &hmr RALT I     &hmr RCTRL O
         &to 2   &kp Z           &kp X          &kp C         &kp D           &kp V             &kp K           &kp H          &comma_semi   &dot_colon      &qu_excl         &tog 1
-                                               &lt move ESC  &lt navi SPACE  &lt calc TAB      &lt nums RET    &lt syms BSPC  &lt func DEL
+                                               &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB      &lt nums7 RET    &lt punc8 BSPC  &lt fkey9 DEL
             >;
         };
 
@@ -243,7 +243,7 @@
                 &kp Q         &kp W        &kp E         &kp R           &kp T           &kp Y         &kp U          &kp I         &kp O        &kp P
                 &hml LCTRL A  &hml LALT S  &hml LCMD D   &hml LSHFT F    &hml GLOBE G    &hmr GLOBE H  &hmr RSHFT J   &hmr RCMD K   &hmr RALT L  &hmr RCTRL APOS
          &to 3  &kp Z         &kp X        &kp C         &kp V           &kp B           &kp N         &kp M          &comma_semi   &dot_colon   &qu_excl         &tog 1
-                                           &lt move ESC  &lt navi SPACE  &lt calc TAB    &lt nums RET  &lt syms BSPC  &lt func DEL
+                                           &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB    &lt nums7 RET  &lt punc8 BSPC  &lt fkey9 DEL
             >;
         };
 
@@ -271,7 +271,7 @@
        &kp Q        &kp W        &kp F         &kp P           &kp B           &kp J         &kp L          &kp U         &kp Y        &kp APOS
        &hml LGUI A  &hml LALT R  &hml LCTRL S  &hml LSHFT T    &kp G           &kp M         &hmr RSHFT N   &hmr RCTRL E  &hmr RALT I  &hmr RGUI O
 &to 0  &kp Z        &kp X        &kp C         &kp D           &kp V           &kp K         &kp H          &comma_semi   &dot_colon   &qu_excl      &tog 3
-                                 &lt move ESC  &lt navi SPACE  &lt calc TAB    &lt nums RET  &lt syms BSPC  &lt func DEL
+                                 &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB    &lt nums7 RET  &lt punc8 BSPC  &lt fkey9 DEL
             >;
         };
 
@@ -299,7 +299,7 @@
        &kp Q        &kp W        &kp E         &kp R           &kp T           &kp Y         &kp U          &kp I         &kp O        &kp P
        &hml LGUI A  &hml LALT S  &hml LCTRL D  &hml LSHFT F    &kp G           &kp H         &hmr RSHFT J   &hmr RCTRL K  &hmr RALT L  &hmr RGUI APOS
 &to 1  &kp Z        &kp X        &kp C         &kp V           &kp B           &kp N         &kp M          &comma_semi   &dot_colon   &qu_excl        &tog 3
-                                 &lt move ESC  &lt navi SPACE  &lt calc TAB    &lt nums RET  &lt syms BSPC  &lt func DEL
+                                 &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB    &lt nums7 RET  &lt punc8 BSPC  &lt fkey9 DEL
             >;
         };
 
