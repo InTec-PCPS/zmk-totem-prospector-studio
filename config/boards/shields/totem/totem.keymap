@@ -95,7 +95,7 @@
       #binding-cells = <0>;                                                 \
       bindings = <_normal_key>, <_shifted_key>;                             \
       mods = <(MOD_LSFT|MOD_RSFT)>;                                         \
-    }
+    };
 
 // TAPDANCE HELPER - one-line tap dance creation //
 #define DEFINE_DOUBLE_TAP_KEY(_behavior_name, _normal_key, _double_tap_key) \
@@ -150,15 +150,15 @@
             hold-trigger-on-release;
         };
 
-        DEFINE_DOUBLE_TAP_KEY(td_par, &kp LPAR, &kp RPAR)
-        DEFINE_DOUBLE_TAP_KEY(td_brc, &kp LBRC, &kp RBRC)
-        DEFINE_DOUBLE_TAP_KEY(td_bkt, &kp LBKT, &kp RBKT)
-        DEFINE_DOUBLE_TAP_KEY(td_lt, &kp LT, &kp GT)
-        DEFINE_DOUBLE_TAP_KEY(td_slh, &kp FSLH, &kp BSLH)
-        DEFINE_SHIFT_KEY(comma_semi, &kp COMMA, &kp SEMI)
-        DEFINE_SHIFT_KEY(dot_colon, &kp DOT, &kp COLON)
-        DEFINE_SHIFT_KEY(qu_excl, &kp QMARK, &kp EXCL)
-        DEFINE_SHITF_KEY(redo, &kp K_UNDO, &kp K_REDO)
+        DEFINE_DOUBLE_TAP_KEY(td_par, &kp LPAR, &kp RPAR);
+        DEFINE_DOUBLE_TAP_KEY(td_brc, &kp LBRC, &kp RBRC);
+        DEFINE_DOUBLE_TAP_KEY(td_bkt, &kp LBKT, &kp RBKT);
+        DEFINE_DOUBLE_TAP_KEY(td_lt, &kp LT, &kp GT);
+        DEFINE_DOUBLE_TAP_KEY(td_slh, &kp FSLH, &kp BSLH);
+        DEFINE_SHIFT_KEY(comma_semi, &kp COMMA, &kp SEMI);
+        DEFINE_SHIFT_KEY(dot_colon, &kp DOT, &kp COLON);
+        DEFINE_SHIFT_KEY(qu_excl, &kp QMARK, &kp EXCL);
+        DEFINE_SHIFT_KEY(redo, &kp K_UNDO, &kp K_REDO);
     };
 
 // ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -174,12 +174,12 @@
     combos {
         compatible = "zmk,combos";
 
-        COMBO(combo_caps, &kp CAPS, 13 16, 0 1 2 3)
-        COMBO(combo_lbrc, &kp LBRC, 13 14, 8)
-        COMBO(combo_lt, &kp LT, 24 25, 8)
-        COMBO(combo_undo, &kp K_UNDO, 21 22, 0 1 2 3 4 5 6 7 8 9)
-        COMBO(combo_copy, &kp K_COPY, 22 23, 0 1 2 3 4 5 6 7 8 9)
-        COMBO(combo_paste, &kp K_PASTE, 23 24, 0 1 2 3 4 5 6 7 8 9)
+        COMBO(caps, &kp CAPS, 13 16, 0 1 2 3)
+        COMBO(lbrc, &kp LBRC, 13 14, 8)
+        COMBO(lt, &kp LT, 24 25, 8)
+        COMBO(undo, &kp K_UNDO, 21 22, 0 1 2 3 4 5 6 7 8 9)
+        COMBO(copy, &kp K_COPY, 22 23, 0 1 2 3 4 5 6 7 8 9)
+        COMBO(paste, &kp K_PASTE, 23 24, 0 1 2 3 4 5 6 7 8 9)
     };
 
 // ▝▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘
