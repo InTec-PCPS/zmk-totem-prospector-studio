@@ -7,5 +7,5 @@ Backup of my working zmk config for:
 
 Future plan (?): making Ploopy Adept trackball BLE and a third peripheral for the Prospector.
 
-![current keymap](other/my_keymap.png)
+![current keymap](other/totem_keymap.png)
 
