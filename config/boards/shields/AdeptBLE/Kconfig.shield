@@ -1,2 +1,0 @@
-config SHIELD_ADEPTBLE
-    def_bool $(shields_list_contains,AdeptBLE)
