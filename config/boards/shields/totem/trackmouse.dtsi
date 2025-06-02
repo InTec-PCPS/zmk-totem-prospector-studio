@@ -1,0 +1,38 @@
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+
+#define DEFAULT 0
+#define SCRLM 1
+#define SCRLH 2
+#define SNIPE 3
+#define SYM 4
+#define NAV 5
+#define ADJUST 6
+
+/{
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+    
+        trackball_listener: trackball_listner {
+        compatible = "zmk,input-listener";
+        device = <&trackball_split>;
+        status = "disabled";
+        input-processors = <&zip_xy_swap_mapper>;
+        scroll {
+        layers = <SCRLM SCRLH NAV>;
+        input-processors =  <&zip_xy_swap_mapper>, <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_x_scaler 1 40>, <&zip_y_scaler 1 100>, <&zip_xy_to_scroll_mapper>;
+    };
+        snipe {
+        layers = <SNIPE>;
+        input-processors = <&zip_xy_swap_mapper>, <&zip_xy_scaler 1 3>;
+    };
+ 
+  };
+};
