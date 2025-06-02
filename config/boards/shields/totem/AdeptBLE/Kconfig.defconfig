@@ -1,0 +1,9 @@
+if SHIELD_ADEPTBLE
+
+config ZMK_KEYBOARD_NAME
+    default "AdeptBLE"
+
+endif
+
+config SPI
+	default y
