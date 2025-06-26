@@ -1,21 +1,20 @@
+#include "totem.dtsi"
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
+#include "trackmouse.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
-// layers
-#define DEFAULT 0
-#define SCRLM 1
-#define SCRLH 2
-#define DEVICE 3
-#define BLTH 4
-#define SNIPE 5
 
 / {
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
+    };
+
+    &default_transform {
+        row-offset = <5>;
     };
 
     kscan0: kscan {
@@ -40,38 +39,6 @@
             RC(0,4) RC(0,5)
         >;
     };
-
-    physical_layout0: physical_layout_0 {
-        compatible = "zmk,physical-layout";
-        display-name = "Default Layout";
-
-        transform = <&default_transform>;
-        kscan = <&kscan0>;
-
-        keys  //                     w   h    x    y     rot    rx    ry
-            = <&key_physical_attrs  50 100    0    0       0     0     0>
-            , <&key_physical_attrs  50  50   50    0       0     0     0>
-            , <&key_physical_attrs  50  50  100    0       0     0     0>
-            , <&key_physical_attrs  50 100  150    0       0     0     0>
-            , <&key_physical_attrs  75 100    0  100       0     0     0>
-            , <&key_physical_attrs  75 100  125  100       0     0     0>
-            ;
-    };
-
-    position_map {
-        compatible = "zmk,physical-layout-position-map";
-
-        complete;
-
-        layout1: layout1 {
-            physical-layout = <&physical_layout0>;
-            positions
-                = < 0  1  2  3>
-                , < 4        5>
-                ;
-        };
-    };
-};
 
 &gpio0 {
     fastbatcharge: fast-battery-charge {
@@ -132,25 +99,6 @@
     };
 };
 
-/ {
-  trackball_listener: trackball_listner {
-    compatible = "zmk,input-listener";
+&trackball_split {
     device = <&trackball>;
-    input-processors = <&zip_xy_swap_mapper>;
-
-    default {
-        layers = <DEFAULT>;
-        process-next;
-    };
-    scroll {
-        layers = <SCRLM SCRLH>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT)>, <&zip_xy_swap_mapper>, <&zip_xy_scaler 1 10>, <&zip_xy_to_scroll_mapper>;
-        process-next;
-    };
-    snipe {
-        layers = <SNIPE>;
-        input-processors = <&zip_xy_scaler 1 5>;
-        process-next;
-    };
-  };
-}; 
+};
