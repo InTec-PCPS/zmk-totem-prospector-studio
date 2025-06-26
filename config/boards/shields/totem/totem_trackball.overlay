@@ -6,15 +6,14 @@
 #include "trackmouse.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+&default_transform {
+    row-offset = <5>;
+};
 
 / {
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
-    };
-
-    &default_transform {
-        row-offset = <4>;
     };
 
     kscan0: kscan {
