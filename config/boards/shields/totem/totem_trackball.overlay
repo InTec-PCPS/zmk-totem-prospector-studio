@@ -17,7 +17,7 @@
     row-offset = <5>;
 };
 
-kscan0: kscan {
+kscan0 {
     compatible = "zmk,kscan-gpio-direct";
     wakeup-source;
     input-gpios
