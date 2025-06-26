@@ -12,6 +12,17 @@
         zmk,kscan = &kscan0;
         zmk,physical-layout = &default_layout;
     };
+    kscan0: kscan_composite
+    compatible = "zmk,kscan-composite";
+    rows = <6>
+    columns = <14>
+    matrix {
+        kscan = <&kscan1>;
+    };
+    direct {
+        kscan = <@kscan2>;
+        row-offset = <4>;
+    };
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
