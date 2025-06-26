@@ -8,16 +8,13 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
+        zmk,kscan = &kscan2;
         zmk,physical-layout = &default_layout;
     };
 };
 
-&default_transform {
-    row-offset = <5>;
-};
 
-&kscan0{
+&kscan2{
     compatible = "zmk,kscan-gpio-direct";
     wakeup-source;
     input-gpios
