@@ -32,9 +32,7 @@ RC(5,0)                 RC(5,1)
         >;
     };
  
-    kscan0: kscan_0 {
-        diode-direction = "col2row"; 
-    };
+
 
     default_layout: default_layout {
         compatible = "zmk,physical-layout";
