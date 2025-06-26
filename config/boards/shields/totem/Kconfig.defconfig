@@ -12,6 +12,9 @@ config ZMK_SPLIT
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 3
+
 config ZMK_POINTING
     default y
 
