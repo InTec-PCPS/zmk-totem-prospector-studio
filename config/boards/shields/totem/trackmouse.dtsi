@@ -1,5 +1,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
+#include "totem.keymap"
 
 /{
     split_inputs {
