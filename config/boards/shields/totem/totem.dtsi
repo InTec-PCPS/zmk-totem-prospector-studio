@@ -7,6 +7,10 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 
+kscan0: kscan {
+    compatible = "zmk,kscan-gpio-matrix";
+    wakeup-source;
+
 / {
     chosen {
         zmk,kscan = &kscan0;
