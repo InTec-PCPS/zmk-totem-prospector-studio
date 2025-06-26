@@ -1,6 +1,17 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
-#include "totem.keymap"
+
+// DEFINE LAYERS
+#define cmac0    0
+#define qmac1    1
+#define cwin2    2
+#define qwin3    3
+#define maus4    4
+#define arro5    5
+#define calc6    6
+#define nums7    7
+#define punc8    8
+#define fkey9    9
 
 /{
     split_inputs {
