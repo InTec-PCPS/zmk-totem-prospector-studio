@@ -6,38 +6,29 @@
 #include "trackmouse.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
-&default_transform {
-    row-offset = <5>;
-};
-
 / {
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
     };
+};
 
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-direct";
-        wakeup-source;
-        input-gpios
-            = <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&xiao_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            , <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
-            ;
-    };
+&default_transform {
+    row-offset = <5>;
+};
 
-    default_transform: keymap_transform_0 {
-        compatible = "zmk,matrix-transform";
-        rows = <2>;
-        columns = <4>;
-        map = <
-            RC(0,0) RC(0,1) RC(0,2) RC(0,3)
-            RC(0,4) RC(0,5)
-        >;
-    };
+kscan0: kscan {
+    compatible = "zmk,kscan-gpio-direct";
+    wakeup-source;
+    input-gpios
+        = <&xiao_d 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&xiao_d 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&xiao_d 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&xiao_d 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&xiao_d 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        , <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+        ;
+};
 
 &gpio0 {
     fastbatcharge: fast-battery-charge {
