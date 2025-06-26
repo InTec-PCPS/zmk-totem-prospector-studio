@@ -16,6 +16,7 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
@@ -194,20 +195,20 @@
 // ╭──────────┬──────────────────────────────────────────╮
 // │ Layer 0  │  COLEMAK-DH with Apple modifiers         │
 // ╰──────────┴──────────────────────────────────────────╯
-//                 ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮                ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮
-//                 │    Q│ │    W│ │    F│ │    P│ │    B│                │J    │ │L    │ │U    │ │Y    │ │'    │
-//                 ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯                ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯
-//                 ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮                ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮
-//                 │󰘴 ┋ A│ │󰘵 ┋ R│ │󰘳 ┋ S│ │󰘶 ┋ T│ │ ┋ G│                │M ┋ │ │N ┋ 󰘶│ │E ┋ 󰘳│ │I ┋ 󰘵│ │O ┋ 󰘴│
-//         ╭─────╮ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯                ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╭─────╮
-//         │    󰼐│ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮                ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ │󰼏    │
-//         ╰─────╯ │    Z│ │    X│ │    C│ │    D│ │    V│                │K    │ │H    │ │,    │ │.    │ │?    │ ╰─────╯
-//                 ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯                ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯
-//                                       ╭─────╮                                    ╭─────╮
-//                                       │󰼒 ┋ ⎋│ ╭─────╮                    ╭─────╮ │󰹿 ┋ 󰼗│
-//                                       ╰─────╯ │󰼓 ┋ 󱁐│ ╭─────╮    ╭─────╮ │󰭜 ┋ 󰼖│ ╰─────╯
-//                                               ╰─────╯ │󰼔 ┋ 󰌒│    │⏎ ┋ 󰼕│ ╰─────╯
-//                                                       ╰─────╯    ╰─────╯
+//                 ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮       ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮       ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ 
+//                 │    Q│ │    W│ │    F│ │    P│ │    B│       │     │ │     │ │     │ │     │       │J    │ │L    │ │U    │ │Y    │ │'    │ 
+//                 ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯       │     │ ╰─────╯ ╰─────╯ │     │       ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯
+//                 ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮       ╰─────╯     =======     ╰─────╯       ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮
+//                 │󰘴 ┋ A│ │󰘵 ┋ R│ │󰘳 ┋ S│ │󰘶 ┋ T│ │ ┋ G│       ╭─────╮   /         \   ╭─────╮       │M ┋ │ │N ┋ 󰘶│ │E ┋ 󰘳│ │I ┋ 󰘵│ │O ┋ 󰘴│
+//         ╭─────╮ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯       │     │  <           >  │     │       ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╭─────╮
+//         │    󰼐│ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮       │     │   \         /   │     │       ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ ╭─────╮ │󰼏    │
+//         ╰─────╯ │    Z│ │    X│ │    C│ │    D│ │    V│       │     │     =======     │     │       │K    │ │H    │ │,    │ │.    │ │?    │ ╰─────╯
+//                 ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯       ╰─────╯                 ╰─────╯       ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯ ╰─────╯
+//                                       ╭─────╮                                                                 ╭─────╮
+//                                       │󰼒 ┋ ⎋│ ╭─────╮                                                 ╭─────╮ │󰹿 ┋ 󰼗│
+//                                       ╰─────╯ │󰼓 ┋ 󱁐│ ╭─────╮                                 ╭─────╮ │󰭜 ┋ 󰼖│ ╰─────╯
+//                                               ╰─────╯ │󰼔 ┋ 󰌒│                                 │⏎ ┋ 󰼕│ ╰─────╯
+//                                                       ╰─────╯                                 ╰─────╯
 
         cmac0 {
             display-name = "cmac0";
@@ -216,6 +217,8 @@
                 &hml LCTRL A    &hml LALT R    &hml LCMD S   &hml LSHFT T    &hml GLOBE G      &hmr GLOBE M    &hmr RSHFT N   &hmr RCMD E   &hmr RALT I     &hmr RCTRL O
         &to 2   &kp Z           &kp X          &kp C         &kp D           &kp V             &kp K           &kp H          &comma_semi   &dot_colon      &qu_excl         &tog 1
                                                &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB      &lt nums7 RET    &lt punc8 BSPC  &lt fkey9 DEL
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -244,6 +247,8 @@
                 &hml LCTRL A  &hml LALT S  &hml LCMD D   &hml LSHFT F    &hml GLOBE G    &hmr GLOBE H  &hmr RSHFT J   &hmr RCMD K   &hmr RALT L  &hmr RCTRL APOS
          &to 3  &kp Z         &kp X        &kp C         &kp V           &kp B           &kp N         &kp M          &comma_semi   &dot_colon   &qu_excl         &tog 1
                                            &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB    &lt nums7 RET  &lt punc8 BSPC  &lt fkey9 DEL
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -272,6 +277,8 @@
        &hml LGUI A  &hml LALT R  &hml LCTRL S  &hml LSHFT T    &kp G           &kp M         &hmr RSHFT N   &hmr RCTRL E  &hmr RALT I  &hmr RGUI O
 &to 0  &kp Z        &kp X        &kp C         &kp D           &kp V           &kp K         &kp H          &comma_semi   &dot_colon   &qu_excl      &tog 3
                                  &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB    &lt nums7 RET  &lt punc8 BSPC  &lt fkey9 DEL
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -300,6 +307,8 @@
        &hml LGUI A  &hml LALT S  &hml LCTRL D  &hml LSHFT F    &kp G           &kp H         &hmr RSHFT J   &hmr RCTRL K  &hmr RALT L  &hmr RGUI APOS
 &to 1  &kp Z        &kp X        &kp C         &kp V           &kp B           &kp N         &kp M          &comma_semi   &dot_colon   &qu_excl        &tog 3
                                  &lt maus4 ESC  &lt arro5 SPACE  &lt calc6 TAB    &lt nums7 RET  &lt punc8 BSPC  &lt fkey9 DEL
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -328,6 +337,8 @@
        &trans        &trans             &trans          &trans  &trans    &none     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT
 &none  &none         &none              &none           &none   &none     &none     &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &none
                                         &trans          &trans  &trans    &mkp MB2  &mkp MB1        &mkp MB3
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -356,6 +367,8 @@
        &trans      &trans     &trans      &trans       &trans        &kp APL_FDNXT  &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT
 &none  &none       &none      &none       &none        &none         &kp APL_FDPRV  &kp APL_WRDP  &kp APL_STTL  &kp APL_ENDL  &kp APL_WRDN  &none
                               &trans      &trans       &trans        &trans         &trans        &trans
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -384,6 +397,8 @@
        &trans  &trans  &trans  &trans  &trans    &kp KP_DIVIDE  &kp KP_N4  &kp KP_N5   &kp KP_N6  &kp KP_MINUS
 &none  &none   &none   &none   &none   &none     &kp KP_EQUAL   &kp KP_N1  &kp KP_N2   &kp KP_N3  &kp KP_PLUS      &none
                        &trans  &trans  &trans    &kp KP_ENTER   &kp KP_N0  &kp KP_DOT
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -412,6 +427,8 @@
        &kp N6        &kp N7    &kp N8     &kp N9     &kp N0     &trans  &trans  &trans  &trans  &trans
 &none  &td_par    &kp PLUS  &kp MINUS  &kp EQUAL  &kp DOT    &none   &none   &none   &none   &none   &none
                                &none      &none      &none      &trans  &trans  &trans
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -440,6 +457,8 @@
            &kp CARET   &kp AMPS  &kp STAR   &td_par  &td_bkt   &trans  &trans  &trans  &trans  &trans
 &kp GRAVE  &td_slh  &kp PIPE  &kp MINUS  &kp PLUS    &kp EQUAL    &none   &none   &none   &none   &none   &none
                                  &trans     &trans      &trans       &trans  &trans  &trans
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
 
@@ -468,6 +487,8 @@
        &kp F6   &kp F7   &kp F8   &kp F9   &kp F10    &trans  &trans  &trans  &trans  &trans
 &none  &kp F11  &kp F12  &kp F13  &kp F14  &kp F15    &none   &none   &none   &none   &none   &none
                          &kp F16  &kp F17  &kp F18    &trans  &trans  &trans
+                                                                 &mkp MB2 &mkp MB3 &mkp MB4 &mkp MB2 
+                                                                 &mkp MB1                   &mkp MB1
             >;
         };
     };
