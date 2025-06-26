@@ -5,6 +5,7 @@
  */
 
 #include "totem.dtsi"
+#include "trackmouse.dtsi"
 
 / {
     chosen {
