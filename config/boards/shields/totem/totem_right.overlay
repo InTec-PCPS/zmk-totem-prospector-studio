@@ -10,7 +10,7 @@
     col-offset = <5>;
 };
 
-&kscan0 {
+&kscan1 {
     compatible = "zmk,kscan-gpio-matrix";
     wakeup-source;
     diode-direction = "col2row";
