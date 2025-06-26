@@ -6,7 +6,7 @@
 
  #include "totem.dtsi"
 
- &kscan0 {
+ &kscan1 {
     compatible = "zmk,kscan-gpio-matrix";
     wakeup-source;
     diode-direction = "col2row";
